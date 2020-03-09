@@ -92,28 +92,25 @@ End
 #tag WindowCode
 	#tag Event
 		Function KeyDown(Key As String) As Boolean
+		  #Pragma Unused Key
+		  
 		  If Keyboard.AsyncKeyDown(&h7B) Then
 		    // Left.
-		    MyMapCanvas1.TileMap.Camera.PanLeft(10)
-		    MyMapCanvas1.Invalidate
+		    #Pragma Warning "TODO"
 		  End If
 		  If Keyboard.AsyncKeyDown(&h7C) Then
 		    // Right.
-		    MyMapCanvas1.TileMap.Camera.PanRight(10)
-		    MyMapCanvas1.Invalidate
+		    #Pragma Warning "TODO"
 		  End If
 		  If Keyboard.AsyncKeyDown(&h7D) Then
 		    // Down.
-		    MyMapCanvas1.TileMap.Camera.PanDown(10)
-		    MyMapCanvas1.Invalidate
+		    #Pragma Warning "TODO"
 		  End If
 		  If Keyboard.AsyncKeyDown(&h7E) Then
 		    // Up.
-		    MyMapCanvas1.TileMap.Camera.PanUp(10)
-		    MyMapCanvas1.Invalidate
+		    #Pragma Warning "TODO"
 		  End If
 		  
-		  #Pragma Error "Bug when scrolling right - no buffer column being drawn."
 		End Function
 	#tag EndEvent
 
@@ -134,12 +131,18 @@ End
 #tag Events MyMapCanvas1
 	#tag Event
 		Sub DidRender(g As Graphics, areas() As REALbasic.Rect)
+		  #Pragma Unused g
+		  #Pragma Unused areas
+		  
 		  DebugInfo.Value = "Rendered " + Me.TileMap.TilesRendered.ToString + " tiles."
 		  
 		End Sub
 	#tag EndEvent
 	#tag Event
 		Sub WillRender(g As Graphics, areas() As REALbasic.Rect)
+		  #Pragma Unused g
+		  #Pragma Unused areas
+		  
 		  MyMapCanvas1.TileMap.Camera.SetViewport(MyMapCanvas1.Width, MyMapCanvas1.Height)
 		  
 		  

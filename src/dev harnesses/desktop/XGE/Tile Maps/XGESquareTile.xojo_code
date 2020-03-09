@@ -39,6 +39,9 @@ Implements XGETile
 		  g.DrawingColor = Color.Black
 		  g.DrawRectangle(offsetX, offsetY, tileWidth, tileHeight)
 		  
+		  // Restore the Graphics drawing colour.
+		  g.DrawingColor = cachedDrawingColour
+		  
 		End Sub
 	#tag EndMethod
 

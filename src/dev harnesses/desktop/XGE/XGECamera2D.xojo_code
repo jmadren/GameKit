@@ -41,44 +41,37 @@ Protected Class XGECamera2D
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Function Origin() As REALbasic.Point
-		  Return mGeometry.Origin
+		Function Origin() As Point
+		  Return mOrigin
 		End Function
 	#tag EndMethod
 
-	#tag Method, Flags = &h0, Description = 52657475726E732061207265666572656E636520746F20746869732063616D65726127732076696577706F72742028692E652E3A2069747320776964746820616E64206865696768742920617320612052656374206F626A6563742E
-		Function Viewport() As REALbasic.Rect
-		  ///
-		  ' Returns a reference to this camera's viewport (i.e its width and height).
-		  '
-		  ' - Returns: REALbasic.Rect.
-		  ///
-		  
-		  #Pragma Error "Broken"
-		  
-		End Function
-	#tag EndMethod
 
-	#tag Method, Flags = &h0, Description = 536574732074686520776964746820616E6420686569676874206F6620746869732063616D65726127732076696577706F727420746F207468652070617373656420526563742E
-		Sub Viewport(Assigns size As REALbasic.Rect)
-		  ///
-		  ' Sets the width and height of this camera's viewport to the passed Rect.
-		  '
-		  ' - Parameter size: The Rect representing the viewport.
-		  '
-		  ' - Note: The passed Rect is kept as a reference.
-		  ///
-		  
-		  mGeometry.Width = size.Width
-		  mGeometry.Height = size.Height
-		  
-		End Sub
-	#tag EndMethod
-
-
-	#tag Property, Flags = &h1
-		Protected mGeometry As REALbasic.Rect
+	#tag Property, Flags = &h21
+		Private mOrigin As Point
 	#tag EndProperty
+
+	#tag Property, Flags = &h21
+		Private mViewport As XGEBox
+	#tag EndProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  Return mOrigin
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  mOrigin = value
+			End Set
+		#tag EndSetter
+		Origin As Point
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		Viewport As XGEBox
+	#tag EndComputedProperty
 
 
 	#tag ViewBehavior
