@@ -18,6 +18,9 @@ Protected Module XGEMessages
 	#tag Constant, Name = CAMERA_ORIGIN_NIL, Type = String, Dynamic = False, Default = \"The viewport origin cannot be Nil.", Scope = Protected
 	#tag EndConstant
 
+	#tag Constant, Name = GEOMETRY_ROTATION_INVALID_POINT, Type = String, Dynamic = False, Default = \"The given values do not lie on the unit circle.", Scope = Protected
+	#tag EndConstant
+
 	#tag Constant, Name = TILE_MAP_INVALID_COLUMN_SIZE, Type = String, Dynamic = False, Default = \"A tile map must have >\x3D 0 columns.", Scope = Protected
 	#tag EndConstant
 
@@ -31,5 +34,47 @@ Protected Module XGEMessages
 	#tag EndConstant
 
 
+	#tag ViewBehavior
+		#tag ViewProperty
+			Name="Name"
+			Visible=true
+			Group="ID"
+			InitialValue=""
+			Type="String"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Index"
+			Visible=true
+			Group="ID"
+			InitialValue="-2147483648"
+			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Super"
+			Visible=true
+			Group="ID"
+			InitialValue=""
+			Type="String"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Left"
+			Visible=true
+			Group="Position"
+			InitialValue="0"
+			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="Top"
+			Visible=true
+			Group="Position"
+			InitialValue="0"
+			Type="Integer"
+			EditorType=""
+		#tag EndViewProperty
+	#tag EndViewBehavior
 End Module
 #tag EndModule

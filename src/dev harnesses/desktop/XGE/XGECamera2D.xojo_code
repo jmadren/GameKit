@@ -46,85 +46,33 @@ Protected Class XGECamera2D
 		End Function
 	#tag EndMethod
 
-	#tag Method, Flags = &h0, Description = 50616E73207468652063616D65726120646F776E2074686520737065636966696564206E756D626572206F6620706978656C732E
-		Sub PanDown(value As Integer)
-		  ///
-		  ' Pans the camera down the specified number of pixels.
-		  '
-		  ' - Parameter value: The number of pixels to pan the camera down by.
-		  ///
-		  
-		  mGeometry.Origin.Y = mGeometry.Origin.Y - value
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0, Description = 50616E73207468652063616D6572612074686520737065636966696564206E756D626572206F6620706978656C7320746F20746865206C6566742E
-		Sub PanLeft(value As Integer)
-		  ///
-		  ' Pans the camera the specified number of pixels to the left.
-		  '
-		  ' - Parameter value: The number of pixels to pan the camera to the left by.
-		  ///
-		  
-		  mGeometry.Origin.X = mGeometry.Origin.X - value
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0, Description = 50616E73207468652063616D6572612074686520737065636966696564206E756D626572206F6620706978656C7320746F207468652072696768742E
-		Sub PanRight(value As Integer)
-		  ///
-		  ' Pans the camera the specified number of pixels to the right.
-		  '
-		  ' - Parameter value: The number of pixels to pan the camera to the right by.
-		  ///
-		  
-		  mGeometry.Origin.X = mGeometry.Origin.X + value
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0, Description = 50616E73207468652063616D6572612075702074686520737065636966696564206E756D626572206F6620706978656C732E
-		Sub PanUp(value As Integer)
-		  ///
-		  ' Pans the camera up the specified number of pixels.
-		  '
-		  ' - Parameter value: The number of pixels to pan the camera up by.
-		  ///
-		  
-		  mGeometry.Origin.Y = mGeometry.Origin.Y + value
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0, Description = 536574732074686520776964746820616E6420686569676874206F66207468652063616D65726127732076696577706F72742E
-		Sub SetViewport(width As Double, height As Double)
-		  ///
-		  ' Sets the width and height of the camera's viewport.
-		  '
-		  ' - Parameter width: The width (in pixels) of the viewport.
-		  ' - Parameter height: The height (in pixels) of the viewport.
-		  '
-		  ///
-		  
-		  mGeometry.Width = width
-		  mGeometry.Height = height
-		  
-		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0, Description = 52657475726E7320746869732063616D65726127732076696577706F72742028692E652069747320776964746820616E6420686569676874292061732061206E65772052656374206F626A6563742E
+	#tag Method, Flags = &h0, Description = 52657475726E732061207265666572656E636520746F20746869732063616D65726127732076696577706F72742028692E652E3A2069747320776964746820616E64206865696768742920617320612052656374206F626A6563742E
 		Function Viewport() As REALbasic.Rect
 		  ///
-		  ' Returns this camera's viewport (i.e its width and height) as a new Rect object.
+		  ' Returns a reference to this camera's viewport (i.e its width and height).
 		  '
-		  ' - Returns: A copy of this camera's mGeometry object.
+		  ' - Returns: REALbasic.Rect.
 		  ///
 		  
-		  Return mGeometry.Clone
+		  #Pragma Error "Broken"
 		  
 		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 536574732074686520776964746820616E6420686569676874206F6620746869732063616D65726127732076696577706F727420746F207468652070617373656420526563742E
+		Sub Viewport(Assigns size As REALbasic.Rect)
+		  ///
+		  ' Sets the width and height of this camera's viewport to the passed Rect.
+		  '
+		  ' - Parameter size: The Rect representing the viewport.
+		  '
+		  ' - Note: The passed Rect is kept as a reference.
+		  ///
+		  
+		  mGeometry.Width = size.Width
+		  mGeometry.Height = size.Height
+		  
+		End Sub
 	#tag EndMethod
 
 

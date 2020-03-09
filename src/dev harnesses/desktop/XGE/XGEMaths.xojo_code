@@ -23,6 +23,91 @@ Protected Module XGEMaths
 		End Function
 	#tag EndMethod
 
+	#tag Method, Flags = &h21
+		Private Sub ComputeEpsilon()
+		  // Computes an approximation of machine epsilon.
+		  
+		  mEpsilon = 0.5
+		  
+		  While (1.0 + mEpsilon > 1.0)
+		    mEpsilon = mEpsilon * 0.5
+		  Wend
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1, Description = 52657475726E73206120617070726F78696D6174696F6E206F66206D616368696E6520657073696C6F6E2E
+		Protected Function Epsilon() As Double
+		  ///
+		  ' Returns a approximation of machine epsilon.
+		  ///
+		  
+		  Return mEpsilon
+		  
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h1
+		Protected Sub Initialise()
+		  If Not mInitialised Then
+		    ComputeEpsilon
+		  End If
+		  
+		  mInitialised = True
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h1, Description = 52657475726E7320746865207061737365642072616469616E732076616C756520696E20646567726565732E
+		Protected Function ToDegrees(radians As Double) As Double
+		  ///
+		  ' Returns the passed radians value in degrees.
+		  ' 
+		  ' - Parameter radians: The value to convert
+		  '
+		  ' - Returns: Double.
+		  ///
+		  
+		  Return radians * m180_OVER_PI
+		End Function
+	#tag EndMethod
+
+	#tag Method, Flags = &h1, Description = 52657475726E73207468652070617373656420646567726565732076616C756520696E2072616469616E732E
+		Protected Function ToRadians(degrees As Double) As Double
+		  ///
+		  ' Returns the passed degrees value in radians.
+		  ' 
+		  ' - Parameter degrees: The angle in degrees.
+		  '
+		  ' - Returns: Double.
+		  ///
+		  
+		  Return degrees * mPI_OVER_180
+		  
+		End Function
+	#tag EndMethod
+
+
+	#tag Property, Flags = &h21, Description = 416E20617070726F78696D6174696F6E206F66206D616368696E6520657073696C6F6E2E
+		Private mEpsilon As Double
+	#tag EndProperty
+
+	#tag Property, Flags = &h21
+		Private mInitialised As Boolean = False
+	#tag EndProperty
+
+
+	#tag Constant, Name = m180_OVER_PI, Type = Double, Dynamic = False, Default = \"57.2957795131", Scope = Private
+	#tag EndConstant
+
+	#tag Constant, Name = MPI_OVER_180, Type = Double, Dynamic = False, Default = \"0.01745329251", Scope = Private
+	#tag EndConstant
+
+	#tag Constant, Name = PI, Type = Double, Dynamic = False, Default = \"3.14159265359", Scope = Protected
+	#tag EndConstant
+
+	#tag Constant, Name = TWO_PI, Type = Double, Dynamic = False, Default = \"6.28318530718", Scope = Protected
+	#tag EndConstant
+
 
 	#tag ViewBehavior
 		#tag ViewProperty
