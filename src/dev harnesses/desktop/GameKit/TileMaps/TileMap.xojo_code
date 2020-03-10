@@ -6,12 +6,6 @@ Protected Interface TileMap
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h0, Description = 546865206E756D626572206F662074696C65732072656E646572656420647572696E6720746865206C6173742052656E646572206F7065726174696F6E2E
-		Function TilesRendered() As Integer
-		  
-		End Function
-	#tag EndMethod
-
 
 	#tag Note, Name = About
 		Render

@@ -1,8 +1,10 @@
 #tag Class
-Protected Class MyMapCanvas
+Protected Class MapCanvasV2
 Inherits Canvas
 	#tag Event
 		Sub Paint(g As Graphics, areas() As REALbasic.Rect)
+		  #Pragma Unused areas
+		  
 		  // Draw a grey background.
 		  g.DrawingColor = Color.LightGray
 		  g.FillRectangle(0, 0, g.Width, g.Height)
@@ -28,7 +30,7 @@ Inherits Canvas
 		  // Create a 50 x 50 tile map anchored to (0, 0).
 		  Var numRows As Integer = 50
 		  Var numColumns As Integer = 50
-		  Self.TileMap = New GameKit.TileMaps.SquareTileMap(numRows, numColumns, 64, 64, 0, 0)
+		  Self.TileMap = New GameKit.TileMaps.SquareTileMapV2(numRows, numColumns, 64, 64, 0, 0)
 		  
 		  CreateTiles(numRows, numColumns)
 		  
@@ -130,7 +132,7 @@ Inherits Canvas
 
 
 	#tag Property, Flags = &h0
-		TileMap As GameKit.TileMaps.SquareTileMap
+		TileMap As GameKit.TileMaps.SquareTileMapV2
 	#tag EndProperty
 
 

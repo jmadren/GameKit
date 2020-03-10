@@ -41,16 +41,18 @@ Implements TileMap,GameKit.Observer
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h0, Description = 4120584745206E6F74696669636174696F6E20686173206265656E2072656365697665642E
+	#tag Method, Flags = &h0, Description = 412047616D654B6974206E6F74696669636174696F6E20686173206265656E2072656365697665642E
 		Sub NotificationReceived(data As Variant, e As GameKit.Events)
 		  /// 
-		  ' An XGE notification has been received.
+		  ' An GameKit notification has been received.
 		  '
 		  ' - Parameter data: Data sent along with the notification (may be Nil).
 		  ' - Parameter e: The event type.
 		  '
 		  ' - Note: Part of the GameKit.Observer interface.
 		  ///
+		  
+		  #Pragma Unused data
 		  
 		  // Is this an event we care about?
 		  Select Case e
@@ -88,7 +90,7 @@ Implements TileMap,GameKit.Observer
 	#tag Method, Flags = &h0, Description = 41737369676E7320746865207061737365642074696C6520746F207468652073706563696669656420726F7720616E6420636F6C756D6E2E
 		Sub SetTile(tile As GameKit.TileMaps.SquareTile, row As Integer, column As Integer)
 		  ///
-		  ' - Note: Part of the XGETileMap interface.
+		  ' - Note: Part of the GameKit.TileMaps.TileMap interface.
 		  ///
 		  
 		  tile.Row = row
@@ -96,19 +98,6 @@ Implements TileMap,GameKit.Observer
 		  mTiles(row, column) = tile
 		  
 		End Sub
-	#tag EndMethod
-
-	#tag Method, Flags = &h0
-		Function TilesRendered() As Integer
-		  ///
-		  ' Returns the number of tiles rendered during the last Render operation.
-		  '
-		  ' - Note: Part of the XGETileMap interface.
-		  ///
-		  
-		  Return mTilesRendered
-		  
-		End Function
 	#tag EndMethod
 
 	#tag Method, Flags = &h21
@@ -134,9 +123,6 @@ Implements TileMap,GameKit.Observer
 		  mBuffer.Graphics.DrawingColor = Color.LightGray
 		  mBuffer.Graphics.FillRectangle(0, 0, mBuffer.Width, mBuffer.Height)
 		  
-		  #Pragma Warning "Just for debugging"
-		  mTilesRendered = 0
-		  
 		  Var x, y As Integer
 		  For col As Integer = mRenderTopLeftColumn To mRenderBottomRightColumn
 		    For row As Integer = mRenderTopLeftRow To mRenderBottomRightRow
@@ -144,9 +130,6 @@ Implements TileMap,GameKit.Observer
 		      y = (row - mRenderTopLeftRow) * mTileHeight + mRenderOffsetY
 		      
 		      mTiles(row, col).Render(mBuffer.Graphics, x, y, mTileWidth, mTileHeight)
-		      
-		      #Pragma Warning "Just for debugging"
-		      mTilesRendered = mTilesRendered + 1
 		    Next row
 		  Next col
 		  
@@ -184,10 +167,6 @@ Implements TileMap,GameKit.Observer
 
 	#tag Property, Flags = &h21, Description = 28726F772C20636F6C756D6E29
 		Private mTiles(-1,-1) As GameKit.TileMaps.SquareTile
-	#tag EndProperty
-
-	#tag Property, Flags = &h21
-		Private mTilesRendered As Integer = 0
 	#tag EndProperty
 
 

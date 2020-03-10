@@ -26,7 +26,9 @@ Implements GameKit.TileMaps.Tile
 
 	#tag Method, Flags = &h0
 		Sub Render(g As Graphics, offsetX As Double, offsetY As Double, tileWidth As Double, tileHeight As Double)
-		  // Part of the XGETile interface.
+		  ///
+		  ' - Note: Part of the GameKit.TileMaps.Tile interface.
+		  ///
 		  
 		  // Draw the fill colour.
 		  g.DrawingColor = Self.Colour
@@ -120,27 +122,11 @@ Implements GameKit.TileMaps.Tile
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="mRow"
-			Visible=false
-			Group="Behavior"
-			InitialValue="0"
-			Type="Integer"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
 			Name="Colour"
 			Visible=false
 			Group="Behavior"
 			InitialValue="&c000000"
 			Type="Color"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="mColumn"
-			Visible=false
-			Group="Behavior"
-			InitialValue="0"
-			Type="Integer"
 			EditorType=""
 		#tag EndViewProperty
 	#tag EndViewBehavior

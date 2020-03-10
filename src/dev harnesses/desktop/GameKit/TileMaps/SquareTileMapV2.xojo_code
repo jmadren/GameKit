@@ -12,10 +12,10 @@ Implements TileMap,GameKit.Observer
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h0, Description = 4120584745206E6F74696669636174696F6E20686173206265656E2072656365697665642E
+	#tag Method, Flags = &h0, Description = 412047616D654B6974206E6F74696669636174696F6E20686173206265656E2072656365697665642E
 		Sub NotificationReceived(data As Variant, e As GameKit.Events)
 		  /// 
-		  ' An XGE notification has been received.
+		  ' A GameKit notification has been received.
 		  '
 		  ' - Parameter data: Data sent along with the notification (may be Nil).
 		  ' - Parameter e: The event type.
@@ -23,12 +23,9 @@ Implements TileMap,GameKit.Observer
 		  ' - Note: Part of the GameKit.Observer interface.
 		  ///
 		  
-		  ' // Is this an event we care about?
-		  ' Select Case e
-		  ' Case GameKit.Events.Camera2DDidMove, GameKit.Events.Camera2DViewportDidResize
-		  ' // We need to redraw the buffer whenever the camera position or viewport changes.
-		  ' UpdateBuffer
-		  ' End Select
+		  #Pragma Unused data
+		  #Pragma Unused e
+		  
 		  
 		End Sub
 	#tag EndMethod
@@ -78,7 +75,7 @@ Implements TileMap,GameKit.Observer
 	#tag Method, Flags = &h0, Description = 41737369676E7320746865207061737365642074696C6520746F207468652073706563696669656420726F7720616E6420636F6C756D6E2E
 		Sub SetTile(tile As GameKit.TileMaps.SquareTile, row As Integer, column As Integer)
 		  ///
-		  ' - Note: Part of the XGETileMap interface.
+		  ' - Note: Part of the GameKit.TileMaps.TileMap interface.
 		  ///
 		  
 		  tile.Row = row
@@ -88,19 +85,6 @@ Implements TileMap,GameKit.Observer
 		End Sub
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
-		Function TilesRendered() As Integer
-		  ///
-		  ' Returns the number of tiles rendered during the last Render operation.
-		  '
-		  ' - Note: Part of the XGETileMap interface.
-		  ///
-		  
-		  Return mTilesRendered
-		  
-		End Function
-	#tag EndMethod
-
 
 	#tag Property, Flags = &h21
 		Private mBuffer As Picture
@@ -108,10 +92,6 @@ Implements TileMap,GameKit.Observer
 
 	#tag Property, Flags = &h21, Description = 28726F772C20636F6C756D6E29
 		Private mTiles(-1,-1) As GameKit.TileMaps.SquareTile
-	#tag EndProperty
-
-	#tag Property, Flags = &h21
-		Private mTilesRendered As Integer = 0
 	#tag EndProperty
 
 

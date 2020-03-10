@@ -24,7 +24,7 @@ Begin Window WinVersion1
    Type            =   "0"
    Visible         =   True
    Width           =   1000
-   Begin MyMapCanvas MyMapCanvas1
+   Begin MapCanvasV1 MyMapCanvas1
       AllowAutoDeactivate=   True
       AllowFocus      =   True
       AllowFocusRing  =   False
@@ -32,7 +32,7 @@ Begin Window WinVersion1
       Backdrop        =   0
       DoubleBuffer    =   False
       Enabled         =   True
-      Height          =   616
+      Height          =   680
       Index           =   -2147483648
       InitialParent   =   ""
       Left            =   20
@@ -50,169 +50,6 @@ Begin Window WinVersion1
       Transparent     =   True
       Visible         =   True
       Width           =   960
-   End
-   Begin Label DebugInfo
-      AllowAutoDeactivate=   True
-      Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      FontName        =   "System"
-      FontSize        =   0.0
-      FontUnit        =   0
-      Height          =   52
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   27
-      LockBottom      =   True
-      LockedInPosition=   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   False
-      Multiline       =   True
-      Scope           =   2
-      Selectable      =   False
-      TabIndex        =   1
-      TabPanelIndex   =   0
-      TabStop         =   True
-      TextAlignment   =   "0"
-      TextColor       =   &c00000000
-      Tooltip         =   ""
-      Top             =   648
-      Transparent     =   False
-      Underline       =   False
-      Value           =   "Debug Info"
-      Visible         =   True
-      Width           =   361
-   End
-   Begin Label Label1
-      AllowAutoDeactivate=   True
-      Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      FontName        =   "System"
-      FontSize        =   0.0
-      FontUnit        =   0
-      Height          =   20
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   417
-      LockBottom      =   True
-      LockedInPosition=   False
-      LockLeft        =   False
-      LockRight       =   True
-      LockTop         =   False
-      Multiline       =   False
-      Scope           =   2
-      Selectable      =   False
-      TabIndex        =   2
-      TabPanelIndex   =   0
-      TabStop         =   True
-      TextAlignment   =   "0"
-      TextColor       =   &c00000000
-      Tooltip         =   ""
-      Top             =   648
-      Transparent     =   False
-      Underline       =   False
-      Value           =   "Anchor X:"
-      Visible         =   True
-      Width           =   75
-   End
-   Begin Label Label2
-      AllowAutoDeactivate=   True
-      Bold            =   False
-      DataField       =   ""
-      DataSource      =   ""
-      Enabled         =   True
-      FontName        =   "System"
-      FontSize        =   0.0
-      FontUnit        =   0
-      Height          =   20
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Italic          =   False
-      Left            =   417
-      LockBottom      =   True
-      LockedInPosition=   False
-      LockLeft        =   False
-      LockRight       =   True
-      LockTop         =   False
-      Multiline       =   False
-      Scope           =   2
-      Selectable      =   False
-      TabIndex        =   3
-      TabPanelIndex   =   0
-      TabStop         =   True
-      TextAlignment   =   "0"
-      TextColor       =   &c00000000
-      Tooltip         =   ""
-      Top             =   680
-      Transparent     =   False
-      Underline       =   False
-      Value           =   "Anchor Y:"
-      Visible         =   True
-      Width           =   75
-   End
-   Begin Slider AnchorXSlider
-      AllowAutoDeactivate=   True
-      AllowLiveScrolling=   True
-      Enabled         =   True
-      Height          =   23
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Left            =   497
-      LineStep        =   10
-      LockBottom      =   True
-      LockedInPosition=   False
-      LockLeft        =   False
-      LockRight       =   True
-      LockTop         =   False
-      MaximumValue    =   500
-      MinimumValue    =   -500
-      PageStep        =   50
-      Scope           =   0
-      TabIndex        =   4
-      TabPanelIndex   =   0
-      TabStop         =   True
-      TickMarkStyle   =   "0"
-      Tooltip         =   ""
-      Top             =   648
-      Transparent     =   False
-      Value           =   0
-      Visible         =   True
-      Width           =   216
-   End
-   Begin Slider AnchorYSlider
-      AllowAutoDeactivate=   True
-      AllowLiveScrolling=   True
-      Enabled         =   True
-      Height          =   23
-      Index           =   -2147483648
-      InitialParent   =   ""
-      Left            =   497
-      LineStep        =   10
-      LockBottom      =   True
-      LockedInPosition=   False
-      LockLeft        =   False
-      LockRight       =   True
-      LockTop         =   False
-      MaximumValue    =   500
-      MinimumValue    =   -500
-      PageStep        =   50
-      Scope           =   0
-      TabIndex        =   5
-      TabPanelIndex   =   0
-      TabStop         =   True
-      TickMarkStyle   =   "0"
-      Tooltip         =   ""
-      Top             =   680
-      Transparent     =   False
-      Value           =   0
-      Visible         =   True
-      Width           =   216
    End
 End
 #tag EndWindow
@@ -284,32 +121,10 @@ End
 		Sub DidRender(g As Graphics)
 		  #Pragma Unused g
 		  
-		  DebugInfo.Value = "Rendered " + Me.TileMap.TilesRendered.ToString + " tiles."
-		  
 		  // Draw a frame around the rendered map.
 		  g.DrawingColor = Color.Blue
 		  g.DrawRectangle(Me.TileMap.Anchor.X, Me.TileMap.Anchor.Y, _
 		  Me.TileMap.Camera.Viewport.Width, Me.TileMap.Camera.Viewport.Height)
-		End Sub
-	#tag EndEvent
-#tag EndEvents
-#tag Events AnchorXSlider
-	#tag Event
-		Sub ValueChanged()
-		  If MyMapCanvas1.TileMap.Camera <> Nil Then
-		    MyMapCanvas1.SetAnchor(Me.Value, MyMapCanvas1.TileMap.Anchor.Y)
-		    MyMapCanvas1.Invalidate
-		  End If
-		End Sub
-	#tag EndEvent
-#tag EndEvents
-#tag Events AnchorYSlider
-	#tag Event
-		Sub ValueChanged()
-		  If MyMapCanvas1.TileMap.Camera <> Nil Then
-		    MyMapCanvas1.SetAnchor(MyMapCanvas1.TileMap.Anchor.X, Me.Value)
-		    MyMapCanvas1.Invalidate
-		  End If
 		End Sub
 	#tag EndEvent
 #tag EndEvents
