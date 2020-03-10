@@ -59,27 +59,28 @@ End
 		Function KeyDown(Key As String) As Boolean
 		  #Pragma Unused Key
 		  
-		  If Keyboard.AsyncKeyDown(&h7B) Then
-		    // Left.
-		    MyMapCanvas1.TileMap.Camera.TranslateX(-10)
+		  Select Case Key
+		  Case Encodings.ASCII.Chr(28)
+		    // Left arrow.
+		    MyMapCanvas1.TileMap.Camera.TranslateX(-20)
 		    MyMapCanvas1.Invalidate
-		  End If
-		  If Keyboard.AsyncKeyDown(&h7C) Then
-		    // Right.
-		    MyMapCanvas1.TileMap.Camera.TranslateX(10)
+		    Return True
+		  Case Encodings.ASCII.Chr(29)
+		    // Right arrow.
+		    MyMapCanvas1.TileMap.Camera.TranslateX(20)
 		    MyMapCanvas1.Invalidate
-		  End If
-		  If Keyboard.AsyncKeyDown(&h7D) Then
-		    // Down.
-		    MyMapCanvas1.TileMap.Camera.TranslateY(10)
+		    Return True
+		  Case Encodings.ASCII.Chr(30)
+		    // Up arrow.
+		    MyMapCanvas1.TileMap.Camera.TranslateY(-20)
 		    MyMapCanvas1.Invalidate
-		  End If
-		  If Keyboard.AsyncKeyDown(&h7E) Then
-		    // Up.
-		    MyMapCanvas1.TileMap.Camera.TranslateY(-10)
+		    Return True
+		  Case Encodings.ASCII.Chr(31)
+		    // Down arrow.
+		    MyMapCanvas1.TileMap.Camera.TranslateY(20)
 		    MyMapCanvas1.Invalidate
-		  End If
-		  
+		    Return True
+		  End Select
 		End Function
 	#tag EndEvent
 

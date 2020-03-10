@@ -59,26 +59,28 @@ End
 		Function KeyDown(Key As String) As Boolean
 		  #Pragma Unused Key
 		  
-		  If Keyboard.AsyncKeyDown(&h7B) Then
-		    // Left.
+		  Select Case Key
+		  Case Encodings.ASCII.Chr(28)
+		    // Left arrow.
 		    MyMapCanvas1.TileMap.Camera.TranslateX(-20)
 		    MyMapCanvas1.Invalidate
-		  End If
-		  If Keyboard.AsyncKeyDown(&h7C) Then
-		    // Right.
+		    Return True
+		  Case Encodings.ASCII.Chr(29)
+		    // Right arrow.
 		    MyMapCanvas1.TileMap.Camera.TranslateX(20)
 		    MyMapCanvas1.Invalidate
-		  End If
-		  If Keyboard.AsyncKeyDown(&h7D) Then
-		    // Down.
-		    MyMapCanvas1.TileMap.Camera.TranslateY(20)
-		    MyMapCanvas1.Invalidate
-		  End If
-		  If Keyboard.AsyncKeyDown(&h7E) Then
-		    // Up.
+		    Return True
+		  Case Encodings.ASCII.Chr(30)
+		    // Up arrow.
 		    MyMapCanvas1.TileMap.Camera.TranslateY(-20)
 		    MyMapCanvas1.Invalidate
-		  End If
+		    Return True
+		  Case Encodings.ASCII.Chr(31)
+		    // Down arrow.
+		    MyMapCanvas1.TileMap.Camera.TranslateY(20)
+		    MyMapCanvas1.Invalidate
+		    Return True
+		  End Select
 		  
 		End Function
 	#tag EndEvent
@@ -96,6 +98,7 @@ End
 		  Var cameraAnchor As Point = New Point(0, 0)
 		  Var cameraViewport As Rect = New Rect(0, 0, MyMapCanvas1.Width, MyMapCanvas1.Height)
 		  Var camera As GameKit.Camera2D = New GameKit.Camera2D(cameraAnchor, cameraViewport)
+		  #Pragma Warning "Do we need a camera anchor in the constructor? ^^"
 		  
 		  // Assign the camera to this map.
 		  MyMapCanvas1.SetCamera(camera)
