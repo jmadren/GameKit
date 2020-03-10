@@ -51,37 +51,48 @@ Begin Window WinVersion2
       Visible         =   True
       Width           =   960
    End
+   Begin Timer MoveTimer
+      Index           =   -2147483648
+      LockedInPosition=   False
+      Period          =   10
+      RunMode         =   "0"
+      Scope           =   0
+      TabPanelIndex   =   0
+   End
 End
 #tag EndWindow
 
 #tag WindowCode
 	#tag Event
 		Function KeyDown(Key As String) As Boolean
-		  #Pragma Unused Key
-		  
 		  Select Case Key
-		  Case Encodings.ASCII.Chr(28)
-		    // Left arrow.
+		  Case Encodings.ASCII.Chr(28) //Left arrow
 		    MyMapCanvas1.TileMap.Camera.TranslateX(-20)
 		    MyMapCanvas1.Invalidate
 		    Return True
-		  Case Encodings.ASCII.Chr(29)
-		    // Right arrow.
+		  Case Encodings.ASCII.Chr(29) //Right arrow
 		    MyMapCanvas1.TileMap.Camera.TranslateX(20)
 		    MyMapCanvas1.Invalidate
 		    Return True
-		  Case Encodings.ASCII.Chr(30)
-		    // Up arrow.
+		  Case Encodings.ASCII.Chr(30) //Up arrow
 		    MyMapCanvas1.TileMap.Camera.TranslateY(-20)
 		    MyMapCanvas1.Invalidate
 		    Return True
-		  Case Encodings.ASCII.Chr(31)
-		    // Down arrow.
+		  Case Encodings.ASCII.Chr(31) //Down arrow
 		    MyMapCanvas1.TileMap.Camera.TranslateY(20)
 		    MyMapCanvas1.Invalidate
 		    Return True
+		  Case Encodings.ASCII.Chr(11) //PgUp
+		    MoveTimes = 20
+		    MoveDir = "Up"
+		    MoveTimer.RunMode = Timer.RunModes.Multiple
+		    Return True
+		  Case Encodings.ASCII.Chr(12) //PgDn
+		    MoveTimes = 20
+		    MoveDir = "Down"
+		    MoveTimer.RunMode = Timer.RunModes.Multiple
+		    Return True
 		  End Select
-		  
 		End Function
 	#tag EndEvent
 
@@ -98,7 +109,6 @@ End
 		  Var cameraAnchor As Point = New Point(0, 0)
 		  Var cameraViewport As Rect = New Rect(0, 0, MyMapCanvas1.Width, MyMapCanvas1.Height)
 		  Var camera As GameKit.Camera2D = New GameKit.Camera2D(cameraAnchor, cameraViewport)
-		  #Pragma Warning "Do we need a camera anchor in the constructor? ^^"
 		  
 		  // Assign the camera to this map.
 		  MyMapCanvas1.SetCamera(camera)
@@ -117,6 +127,15 @@ End
 	#tag EndEvent
 
 
+	#tag Property, Flags = &h0
+		MoveDir As String
+	#tag EndProperty
+
+	#tag Property, Flags = &h0
+		MoveTimes As Integer
+	#tag EndProperty
+
+
 #tag EndWindowCode
 
 #tag Events MyMapCanvas1
@@ -128,6 +147,25 @@ End
 		  g.DrawingColor = Color.Blue
 		  g.DrawRectangle(Me.TileMap.Anchor.X, Me.TileMap.Anchor.Y, _
 		  Me.TileMap.Camera.Viewport.Width, Me.TileMap.Camera.Viewport.Height)
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events MoveTimer
+	#tag Event
+		Sub Action()
+		  If MoveTimes = 1 Then Me.RunMode = Timer.RunModes.Off
+		  MoveTimes = MoveTimes - 1
+		  Select Case MoveDir
+		  Case "Left"
+		    MyMapCanvas1.TileMap.Camera.TranslateX(-20)
+		  Case "Right"
+		    MyMapCanvas1.TileMap.Camera.TranslateX(20)
+		  Case "Up"
+		    MyMapCanvas1.TileMap.Camera.TranslateY(-20)
+		  Case "Down"
+		    MyMapCanvas1.TileMap.Camera.TranslateY(20)
+		  End Select
+		  MyMapCanvas1.Invalidate
 		End Sub
 	#tag EndEvent
 #tag EndEvents
