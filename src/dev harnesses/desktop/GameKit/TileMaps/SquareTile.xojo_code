@@ -1,6 +1,6 @@
 #tag Class
 Protected Class SquareTile
-Implements XGE.TileMaps.Tile
+Implements GameKit.TileMaps.Tile
 	#tag Method, Flags = &h0
 		Function Column() As Integer
 		  Return mColumn
@@ -28,9 +28,6 @@ Implements XGE.TileMaps.Tile
 		Sub Render(g As Graphics, offsetX As Double, offsetY As Double, tileWidth As Double, tileHeight As Double)
 		  // Part of the XGETile interface.
 		  
-		  // Cache the current Graphics drawing colour.
-		  Var cachedDrawingColour As Color = g.DrawingColor
-		  
 		  // Draw the fill colour.
 		  g.DrawingColor = Self.Colour
 		  g.FillRectangle(offsetX, offsetY, tileWidth, tileHeight)
@@ -39,8 +36,6 @@ Implements XGE.TileMaps.Tile
 		  g.DrawingColor = Color.Black
 		  g.DrawRectangle(offsetX, offsetY, tileWidth, tileHeight)
 		  
-		  // Restore the Graphics drawing colour.
-		  g.DrawingColor = cachedDrawingColour
 		  
 		End Sub
 	#tag EndMethod
@@ -62,24 +57,24 @@ Implements XGE.TileMaps.Tile
 	#tag EndMethod
 
 
-	#tag Property, Flags = &h21, Description = 49662054727565207468656E2074686520636F6C756D6E20696E64657820666F7220746869732074696C652063616E206E6F206C6F6E676572206265206D6F6469666965642E
-		Private CanModifyColumnIndex As Boolean = True
+	#tag Property, Flags = &h1, Description = 49662054727565207468656E2074686520636F6C756D6E20696E64657820666F7220746869732074696C652063616E206E6F206C6F6E676572206265206D6F6469666965642E
+		Protected CanModifyColumnIndex As Boolean = True
 	#tag EndProperty
 
-	#tag Property, Flags = &h21, Description = 49662054727565207468656E2074686520726F7720696E64657820666F7220746869732074696C652063616E206E6F206C6F6E676572206265206D6F6469666965642E
-		Private CanModifyRowIndex As Boolean = True
+	#tag Property, Flags = &h1, Description = 49662054727565207468656E2074686520726F7720696E64657820666F7220746869732074696C652063616E206E6F206C6F6E676572206265206D6F6469666965642E
+		Protected CanModifyRowIndex As Boolean = True
 	#tag EndProperty
 
 	#tag Property, Flags = &h0
 		Colour As Color
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		mColumn As Integer = 0
+	#tag Property, Flags = &h1
+		Protected mColumn As Integer = 0
 	#tag EndProperty
 
-	#tag Property, Flags = &h0
-		mRow As Integer = 0
+	#tag Property, Flags = &h1
+		Protected mRow As Integer = 0
 	#tag EndProperty
 
 

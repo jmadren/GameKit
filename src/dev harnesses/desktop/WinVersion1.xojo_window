@@ -1,5 +1,5 @@
 #tag Window
-Begin Window Window1
+Begin Window WinVersion1
    Backdrop        =   0
    BackgroundColor =   &cFFFFFF00
    Composite       =   False
@@ -20,7 +20,7 @@ Begin Window Window1
    MinimumHeight   =   64
    MinimumWidth    =   64
    Resizeable      =   True
-   Title           =   "Untitled"
+   Title           =   "Version 1"
    Type            =   "0"
    Visible         =   True
    Width           =   1000
@@ -248,11 +248,17 @@ End
 
 	#tag Event
 		Sub Open()
-		  // Assign a small square camera with an origin at the top-left corner of the map, 
-		  // anchored to the top left corner of the canvas.
+		  ' // Assign a small square camera with an origin at the top-left corner of the map, 
+		  ' // anchored to the top left corner of the canvas.
+		  ' Var cameraAnchor As Point = New Point(0, 0)
+		  ' Var cameraViewport As Rect = New Rect(0, 0, 300, 300)
+		  ' Var camera As GameKit.Camera2D = New GameKit.Camera2D(cameraAnchor, cameraViewport)
+		  
+		  // Anchor the map to the top left corner of the canvas and create a camera whose 
+		  // viewport is the same size as the canvas.
 		  Var cameraAnchor As Point = New Point(0, 0)
-		  Var cameraViewport As Rect = New Rect(0, 0, 300, 300)
-		  Var camera As XGE.Camera2D = New XGE.Camera2D(cameraAnchor, cameraViewport)
+		  Var cameraViewport As Rect = New Rect(0, 0, MyMapCanvas1.Width, MyMapCanvas1.Height)
+		  Var camera As GameKit.Camera2D = New GameKit.Camera2D(cameraAnchor, cameraViewport)
 		  
 		  // Assign the camera to this map.
 		  MyMapCanvas1.SetCamera(camera)
@@ -260,6 +266,13 @@ End
 		  // Force a redraw of the canvas.
 		  MyMapCanvas1.Refresh
 		  
+		End Sub
+	#tag EndEvent
+
+	#tag Event
+		Sub Resizing()
+		  // Update the size of the camera's viewport to match the new size of the canvas.
+		  MyMapCanvas1.TileMap.Camera.ResizeViewport(MyMapCanvas1.Width, MyMapCanvas1.Height)
 		End Sub
 	#tag EndEvent
 
@@ -278,16 +291,6 @@ End
 		  g.DrawingColor = Color.Blue
 		  g.DrawRectangle(Me.TileMap.Anchor.X, Me.TileMap.Anchor.Y, _
 		  Me.TileMap.Camera.Viewport.Width, Me.TileMap.Camera.Viewport.Height)
-		End Sub
-	#tag EndEvent
-	#tag Event , Description = 5468652074696C65206D61702069732061626F757420746F2072656E64657220697473656C6620746F20746865204772617068696373206F626A6563742E
-		Sub WillRender(g As Graphics, areas() As REALbasic.Rect)
-		  #Pragma Unused g
-		  #Pragma Unused areas
-		  
-		  ' MyMapCanvas1.TileMap.Camera.ResizeViewport(MyMapCanvas1.Width, MyMapCanvas1.Height)
-		  
-		  
 		End Sub
 	#tag EndEvent
 #tag EndEvents

@@ -28,21 +28,38 @@ Inherits Canvas
 		  // Create a 50 x 50 tile map anchored to (0, 0).
 		  Var numRows As Integer = 50
 		  Var numColumns As Integer = 50
-		  Self.TileMap = New XGE.TileMaps.SquareTileMap(numRows, numColumns, 64, 64, 0, 0)
+		  Self.TileMap = New GameKit.TileMaps.SquareTileMap(numRows, numColumns, 64, 64, 0, 0)
+		  
+		  CreateTiles(numRows, numColumns)
+		  
+		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h21
+		Private Sub CreateTiles(numRows As Integer, numColumns As Integer)
+		  ///
+		  ' Creates a test map of tiles.
+		  ' Red on the periphery with a green inner border and a central yellow tile.
+		  ///
 		  
 		  // Add the tiles to the map.
 		  For col As Integer = 0 to numColumns - 1
 		    For row As Integer = 0 To numRows - 1
 		      Var colour As Color
-		      If System.Random.InRange(1, 100) < 95 Then
-		        colour = Color.White
-		      Else
+		      If col = 0 Or col = numColumns - 1 Or row = 0 Or row = numRows - 1 Then
 		        colour = Color.Red
+		      ElseIf col = 2 Or col = numColumns - 3 Or row = 2 Or row = numRows - 3 Then
+		        colour = Color.Green
+		      ElseIf col = Floor(numColumns/2) And row = Floor(numRows/2) Then
+		        colour = Color.Yellow
+		      Else
+		        colour = Color.White
 		      End If
-		      Self.TileMap.SetTile(New XGE.TileMaps.SquareTile(colour), row, col)
+		      
+		      Self.TileMap.SetTile(New GameKit.TileMaps.SquareTile(colour), row, col)
 		    Next row
 		  Next col
-		  
 		End Sub
 	#tag EndMethod
 
@@ -63,7 +80,7 @@ Inherits Canvas
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub SetCamera(c As XGE.Camera2D)
+		Sub SetCamera(c As GameKit.Camera2D)
 		  ///
 		  ' Sets the passed camera to be the sole camera for this map.
 		  '
@@ -113,7 +130,7 @@ Inherits Canvas
 
 
 	#tag Property, Flags = &h0
-		TileMap As XGE.TileMaps.SquareTileMap
+		TileMap As GameKit.TileMaps.SquareTileMap
 	#tag EndProperty
 
 
