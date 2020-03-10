@@ -1,5 +1,5 @@
 #tag Class
-Protected Class XGETileMapRenderData
+Private Class TileMapRenderData
 	#tag Method, Flags = &h0
 		Sub Constructor(tlr As Integer, tlc As Integer, brr As Integer, brc As Integer, offsetX As Double, offsetY As Double)
 		  TopLeftRow = tlr

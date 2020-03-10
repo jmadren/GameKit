@@ -1,5 +1,5 @@
 #tag Interface
-Protected Interface XGETileMap
+Protected Interface TileMap
 	#tag Method, Flags = &h0, Description = 496E73747275637473207468652074696C65206D617020746F2072656472617720697473656C662E
 		Sub Render(g As Graphics, areas() As REALbasic.Rect)
 		  

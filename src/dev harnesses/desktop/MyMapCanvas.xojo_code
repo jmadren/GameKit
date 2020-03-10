@@ -7,12 +7,15 @@ Inherits Canvas
 		  g.DrawingColor = Color.LightGray
 		  g.FillRectangle(0, 0, g.Width, g.Height)
 		  
+		  // Fire the WillRender event before we render.
 		  WillRender(g, areas)
 		  
 		  // Render the tiles.
 		  Self.TileMap.Render(g, areas)
 		  
+		  // Fire the DidRender event now we're done rendering.
 		  DidRender(g, areas)
+		  
 		End Sub
 	#tag EndEvent
 
@@ -25,7 +28,7 @@ Inherits Canvas
 		  // Create a 50 x 50 tile map.
 		  Var numRows As Integer = 50
 		  Var numColumns As Integer = 50
-		  Self.TileMap = New XGESquareTileMap(numRows, numColumns, 64, 64)
+		  Self.TileMap = New XGE.TileMaps.SquareTileMap(numRows, numColumns, 64, 64)
 		  
 		  // Add the tiles to the map.
 		  For col As Integer = 0 to numColumns - 1
@@ -36,25 +39,41 @@ Inherits Canvas
 		      Else
 		        colour = Color.Red
 		      End If
-		      Self.TileMap.SetTile(New XGESquareTile(colour), row, col)
+		      Self.TileMap.SetTile(New XGE.TileMaps.SquareTile(colour), row, col)
 		    Next row
 		  Next col
 		  
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0
+		Sub SetCamera(c As XGE.Camera2D)
+		  ///
+		  ' Sets the passed camera to be the sole camera for this map.
+		  '
+		  ' - Parameter c: The camera to assign.
+		  ///
+		  
+		  Self.TileMap.Camera = c
+		  
+		  // Register our tile map as an observer of the camera's activity.
+		  Self.TileMap.Camera.AddObserver(Self.TileMap)
+		  
+		End Sub
+	#tag EndMethod
 
-	#tag Hook, Flags = &h0
+
+	#tag Hook, Flags = &h0, Description = 546865206D6170206861732066696E69736865642072656E646572696E6720697473656C6620746F20746865204772617068696373206F626A6563742E
 		Event DidRender(g As Graphics, areas() As REALbasic.Rect)
 	#tag EndHook
 
-	#tag Hook, Flags = &h0
+	#tag Hook, Flags = &h0, Description = 5468652074696C65206D61702069732061626F757420746F2072656E64657220697473656C6620746F20746865204772617068696373206F626A6563742E
 		Event WillRender(g As Graphics, areas() As REALbasic.Rect)
 	#tag EndHook
 
 
 	#tag Property, Flags = &h0
-		TileMap As XGESquareTileMap
+		TileMap As XGE.TileMaps.SquareTileMap
 	#tag EndProperty
 
 

@@ -1,5 +1,5 @@
 #tag Class
-Protected Class XGETileMapBase
+Private Class TileMapBase
 	#tag Method, Flags = &h1
 		Protected Sub Constructor(rows As Integer, columns As Integer, tileWidth As Integer, tileHeight As Integer)
 		  ///
@@ -13,16 +13,16 @@ Protected Class XGETileMapBase
 		  
 		  // Validate the map size.
 		  If rows <= 0 Then
-		    Raise New InvalidArgumentException(XGEMessages.TILE_MAP_INVALID_ROW_SIZE)
+		    Raise New InvalidArgumentException(XGE.Messages.TILE_MAP_INVALID_ROW_SIZE)
 		  ElseIf columns <= 0 Then
-		    Raise New InvalidArgumentException(XGEMessages.TILE_MAP_INVALID_COLUMN_SIZE)
+		    Raise New InvalidArgumentException(XGE.Messages.TILE_MAP_INVALID_COLUMN_SIZE)
 		  End If
 		  
 		  // Validate the tile sizes.
 		  If tileWidth <= 0 Then
-		    Raise New InvalidArgumentException(XGEMessages.TILE_MAP_INVALID_TILE_WIDTH)
+		    Raise New InvalidArgumentException(XGE.Messages.TILE_MAP_INVALID_TILE_WIDTH)
 		  ElseIf tileHeight <= 0 Then
-		    Raise New InvalidArgumentException(XGEMessages.TILE_MAP_INVALID_TILE_HEIGHT)
+		    Raise New InvalidArgumentException(XGE.Messages.TILE_MAP_INVALID_TILE_HEIGHT)
 		  End If
 		  
 		  mRows = rows
@@ -35,7 +35,7 @@ Protected Class XGETileMapBase
 
 
 	#tag Property, Flags = &h0, Description = 5468652076696577706F7274206F662074686973206D617020696E2069747320636F6E7461696E696E67204772617068696373206F626A6563742E2053706563696669657320746865206865696768742C20776964746820616E64206F726967696E2E
-		Camera As XGECamera2D
+		Camera As XGE.Camera2D
 	#tag EndProperty
 
 	#tag Property, Flags = &h1, Description = 546865206E756D626572206F6620636F6C756D6E732074686973206D6170206861732E

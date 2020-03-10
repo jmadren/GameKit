@@ -1,6 +1,6 @@
 #tag Class
-Protected Class XGESquareTile
-Implements XGETile
+Protected Class SquareTile
+Implements XGE.TileMaps.Tile
 	#tag Method, Flags = &h0
 		Function Column() As Integer
 		  Return mColumn

@@ -1,12 +1,18 @@
 #tag Module
-Protected Module XGEMessages
-	#tag Constant, Name = CAMERA_INVALID_VIEWPORT_HEIGHT, Type = String, Dynamic = False, Default = \"The camera\'s viewport height must be greater than 0.", Scope = Protected
+Protected Module Messages
+	#tag Constant, Name = CAMERA2D_NIL, Type = String, Dynamic = False, Default = \"The Camera2D was unexpectedly Nil.", Scope = Protected
 	#tag EndConstant
 
-	#tag Constant, Name = CAMERA_INVALID_VIEWPORT_WIDTH, Type = String, Dynamic = False, Default = \"The camera\'s viewport width must be greater than 0.", Scope = Protected
+	#tag Constant, Name = CAMERA_ANCHOR_NIL, Type = String, Dynamic = False, Default = \"The camera\'s anchor Point cannot be Nil.", Scope = Protected
 	#tag EndConstant
 
-	#tag Constant, Name = CAMERA_NIL, Type = String, Dynamic = False, Default = \"The passed viewport Rect must not be Nil.", Scope = Protected
+	#tag Constant, Name = CAMERA_INVALID_VIEWPORT_HEIGHT, Type = String, Dynamic = False, Default = \"The camera\'s viewport height must be greater than or equal to 0.", Scope = Protected
+	#tag EndConstant
+
+	#tag Constant, Name = CAMERA_INVALID_VIEWPORT_WIDTH, Type = String, Dynamic = False, Default = \"The camera\'s viewport width must be greater than or equal to 0.", Scope = Protected
+	#tag EndConstant
+
+	#tag Constant, Name = CAMERA_NIL, Type = String, Dynamic = False, Default = \"The camera object cannot be Nil.", Scope = Protected
 	#tag EndConstant
 
 	#tag Constant, Name = CAMERA_ORIGIN_INVALID_X, Type = String, Dynamic = False, Default = \"The viewport origin X coordinate must be >\x3D 0.", Scope = Protected
@@ -16,6 +22,9 @@ Protected Module XGEMessages
 	#tag EndConstant
 
 	#tag Constant, Name = CAMERA_ORIGIN_NIL, Type = String, Dynamic = False, Default = \"The viewport origin cannot be Nil.", Scope = Protected
+	#tag EndConstant
+
+	#tag Constant, Name = CAMERA_VIEWPORT_NIL, Type = String, Dynamic = False, Default = \"The camera\'s viewport Rect cannot be Nil.", Scope = Protected
 	#tag EndConstant
 
 	#tag Constant, Name = GEOMETRY_ROTATION_INVALID_POINT, Type = String, Dynamic = False, Default = \"The given values do not lie on the unit circle.", Scope = Protected
