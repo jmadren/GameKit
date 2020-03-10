@@ -1,5 +1,5 @@
 #tag Window
-Begin Window WinVersion1
+Begin Window WinVersion2
    Backdrop        =   0
    BackgroundColor =   &cFFFFFF00
    Composite       =   False
@@ -20,11 +20,11 @@ Begin Window WinVersion1
    MinimumHeight   =   64
    MinimumWidth    =   64
    Resizeable      =   True
-   Title           =   "Version 1"
+   Title           =   "Version 2"
    Type            =   "0"
    Visible         =   True
    Width           =   1000
-   Begin MyMapCanvas MyMapCanvas1
+   Begin MapV2 MyMapCanvas1
       AllowAutoDeactivate=   True
       AllowFocus      =   True
       AllowFocusRing  =   False
@@ -224,22 +224,22 @@ End
 		  
 		  If Keyboard.AsyncKeyDown(&h7B) Then
 		    // Left.
-		    MyMapCanvas1.TileMap.Camera.TranslateX(-10)
+		    MyMapCanvas1.TileMap.Camera.TranslateX(-20)
 		    MyMapCanvas1.Invalidate
 		  End If
 		  If Keyboard.AsyncKeyDown(&h7C) Then
 		    // Right.
-		    MyMapCanvas1.TileMap.Camera.TranslateX(10)
+		    MyMapCanvas1.TileMap.Camera.TranslateX(20)
 		    MyMapCanvas1.Invalidate
 		  End If
 		  If Keyboard.AsyncKeyDown(&h7D) Then
 		    // Down.
-		    MyMapCanvas1.TileMap.Camera.TranslateY(10)
+		    MyMapCanvas1.TileMap.Camera.TranslateY(20)
 		    MyMapCanvas1.Invalidate
 		  End If
 		  If Keyboard.AsyncKeyDown(&h7E) Then
 		    // Up.
-		    MyMapCanvas1.TileMap.Camera.TranslateY(-10)
+		    MyMapCanvas1.TileMap.Camera.TranslateY(-20)
 		    MyMapCanvas1.Invalidate
 		  End If
 		  

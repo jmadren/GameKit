@@ -1,7 +1,7 @@
 #tag Interface
 Protected Interface TileMap
 	#tag Method, Flags = &h0, Description = 496E73747275637473207468652074696C65206D617020746F2072656472617720697473656C662E
-		Sub Render(g As Graphics, areas() As REALbasic.Rect)
+		Sub Render(g As Graphics)
 		  
 		End Sub
 	#tag EndMethod
@@ -18,9 +18,7 @@ Protected Interface TileMap
 		======
 		Instructs the tile map to draw itself to the passed Graphics object.
 		- Parameter g: The Graphics object that the tile map should draw itself to.
-		- Parameter areas(): Optional. Specifies the areas of the Graphics object that need
-		                     redrawing. If this tile map's viewport is not within one of 
-		                     these areas then there is no need to draw anything.
+		
 		
 	#tag EndNote
 

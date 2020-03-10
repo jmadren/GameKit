@@ -7,9 +7,6 @@ Implements TileMap,GameKit.Observer
 		  ///
 		  ' Computes the data required to render this map to the camera's viewport.
 		  '
-		  ' - Returns: An XGETileMapRenderData object containing the row and colum of the 
-		  ' top left and bottom right visible tiles as well as the X and Y scroll offset.
-		  '
 		  ' - Note: The tiles at the top left and bottom right may be only partially visible.
 		  
 		  Var viewportOriginX As Double = Camera.Viewport.Origin.X
@@ -66,37 +63,17 @@ Implements TileMap,GameKit.Observer
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 447261772074686973206D617020746F2074686520706173736564204772617068696373206F626A6563742E
-		Sub Render(g As Graphics, areas() As REALbasic.Rect)
+		Sub Render(g As Graphics)
 		  ///
 		  ' Draw this map to the passed Graphics object.
 		  '
 		  ' - Parameter g: The Graphics object that should be drawn to.
-		  ' - Parameter areas(): An array of Rect areas that need repainting. We only 
-		  '                      need to draw this map IF this map's viewport is contained 
-		  '                      within one of these areas.
 		  '
-		  ' - Note: Part of the XGETileMap interface.
+		  ' - Note: Part of the GameKit.TileMaps.TileMap interface.
 		  ///
 		  
 		  // First check to see if this tile map has a valid camera. It can't draw if it doesn't.
 		  If Self.Camera = Nil Then Return
-		  
-		  // First of all, is our viewport visible in any of the passed areas that need painting?
-		  // We check for intersection rather than containment as we will redraw the map if any 
-		  // part of its viewport is within one of the specified areas.
-		  Var needsRedrawing As Boolean = False
-		  
-		  // If no areas have been specified, then the entire Graphics object needs redrawing.
-		  If areas.Count = 0 Then needsRedrawing = True
-		  For Each area As REALbasic.Rect In areas
-		    If Camera.Intersects(area) Then
-		      needsRedrawing = True
-		      Exit
-		    End If
-		  Next area
-		  
-		  // Bail early if possible.
-		  If Not needsRedrawing Then Return
 		  
 		  // Check we actually have a buffer to draw.
 		  If mBuffer = Nil Then UpdateBuffer
