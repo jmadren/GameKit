@@ -25,10 +25,10 @@ Inherits Canvas
 		  // Calling the overridden superclass constructor.
 		  Super.Constructor
 		  
-		  // Create a 50 x 50 tile map.
+		  // Create a 50 x 50 tile map anchored to (0, 0).
 		  Var numRows As Integer = 50
 		  Var numColumns As Integer = 50
-		  Self.TileMap = New XGE.TileMaps.SquareTileMap(numRows, numColumns, 64, 64)
+		  Self.TileMap = New XGE.TileMaps.SquareTileMap(numRows, numColumns, 64, 64, 0, 0)
 		  
 		  // Add the tiles to the map.
 		  For col As Integer = 0 to numColumns - 1
@@ -46,6 +46,22 @@ Inherits Canvas
 		End Sub
 	#tag EndMethod
 
+	#tag Method, Flags = &h0, Description = 536574732074686520706F736974696F6E206F662074686973206D6170277320616E63686F7220746F207468652073706563696669656420636F6F7264696E617465732E
+		Sub SetAnchor(x As Double, y As Double)
+		  ///
+		  ' Sets the position of this map's anchor to the specified coordinates.
+		  '
+		  ' - Parameter x: The new X position of the map's anchor.
+		  ' - Parameter y: The new Y position of the map's anchor.
+		  '
+		  ' - Note: (0, 0) is the top-left corner.
+		  ///
+		  
+		  Self.TileMap.SetAnchor(x, y)
+		  
+		End Sub
+	#tag EndMethod
+
 	#tag Method, Flags = &h0
 		Sub SetCamera(c As XGE.Camera2D)
 		  ///
@@ -59,6 +75,30 @@ Inherits Canvas
 		  // Register our tile map as an observer of the camera's activity.
 		  Self.TileMap.Camera.AddObserver(Self.TileMap)
 		  
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 5472616E736C6174657320746865206D617027732063616D65726120696E20746865205820646972656374696F6E2E20506F736974697665206D6F7665732069742072696768742C206E65676174697665206C6566742E
+		Sub TranslateCameraX(value As Double)
+		  ///
+		  ' Translates the map's camera in the X direction.
+		  '
+		  ' - Parameter value: The number of pixels to move the camera. Positive moves it right.
+		  ///
+		  
+		  If Self.TileMap.Camera <> Nil Then Self.TileMap.Camera.TranslateX(value)
+		End Sub
+	#tag EndMethod
+
+	#tag Method, Flags = &h0, Description = 5472616E736C6174657320746865206D617027732063616D65726120696E20746865205820646972656374696F6E2E20506F736974697665206D6F76657320697420646F776E2C206E656761746976652075702E
+		Sub TranslateCameraY(value As Double)
+		  ///
+		  ' Translates the map's camera in the Y direction.
+		  '
+		  ' - Parameter value: The number of pixels to move the camera. Positive moves it down.
+		  ///
+		  
+		  If Self.TileMap.Camera <> Nil Then Self.TileMap.Camera.TranslateY(value)
 		End Sub
 	#tag EndMethod
 

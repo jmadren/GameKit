@@ -2,7 +2,8 @@
 Protected Module XGE
 	#tag Enum, Name = Events, Type = Integer, Flags = &h1
 		Camera2DDidMove
-		Camera2DViewportDidResize
+		  Camera2DViewportDidResize
+		TileMapAnchorDidChange
 	#tag EndEnum
 
 

@@ -1,6 +1,6 @@
 #tag Class
 Protected Class Camera2D
-	#tag Method, Flags = &h0
+	#tag Method, Flags = &h0, Description = 416464732074686520737065636966696564206F6273657276657220606F6020746F206F7572206B6E6F776E206F62736572766572732E
 		Sub AddObserver(o As XGE.Observer)
 		  ///
 		  ' Adds the specified observer `o` to our known observers.
@@ -19,18 +19,17 @@ Protected Class Camera2D
 		  ///
 		  ' Default constructor.
 		  '
-		  ' Creates an infinitely small viewport with a (0, 0) origin anchored at (0, 0).
+		  ' Creates an infinitely small viewport with a (0, 0) origin.
 		  ///
 		  
 		  mViewport = New Rect(0, 0, 0, 0)
-		  mAnchor = New Point(0, 0)
 		  mObservers = New Dictionary
 		  
 		End Sub
 	#tag EndMethod
 
 	#tag Method, Flags = &h0, Description = 437265617465732061206E65772032442063616D65726120776974682074686520737065636966696564206F726967696E20616E642076696577706F72742E
-		Sub Constructor(anchorX As Double, anchorY As Double, viewportOriginX As Double, viewportOriginY As Double, viewportWidth As Double, viewportHeight As Double)
+		Sub Constructor(viewportOriginX As Double, viewportOriginY As Double, viewportWidth As Double, viewportHeight As Double)
 		  ///
 		  ' Creates a new 2D camera with the specified origin and viewport.
 		  '
@@ -53,7 +52,6 @@ Protected Class Camera2D
 		  End If
 		  
 		  mViewport = New Rect(viewportOriginX, viewportOriginY, viewportWidth, viewportHeight)
-		  mAnchor = New Point(anchorX, anchorY)
 		  mObservers = New Dictionary
 		  
 		End Sub
@@ -86,7 +84,6 @@ Protected Class Camera2D
 		  End If
 		  
 		  mViewport = viewport.Clone
-		  mAnchor = anchor.Clone
 		  mObservers = New Dictionary
 		  
 		End Sub
@@ -117,7 +114,7 @@ Protected Class Camera2D
 		End Function
 	#tag EndMethod
 
-	#tag Method, Flags = &h0
+	#tag Method, Flags = &h0, Description = 4E6F746966792065616368206F66206F7572206F62736572766572732061626F75742074686520706173736564206576656E742077697468207468652070617373656420646174612E
 		Sub Notify(data As Variant, e As XGE.Events)
 		  ///
 		  ' Notify each of our observers about the passed event with the passed data.
@@ -172,7 +169,7 @@ Protected Class Camera2D
 		  mViewport.Height = height
 		  
 		  // Notify observers of the viewport resizing.
-		  Notify(Nil, XGE.Events.Camera2DViewportDidResize)
+		  Notify(Self, XGE.Events.Camera2DViewportDidResize)
 		End Sub
 	#tag EndMethod
 
@@ -211,24 +208,6 @@ Protected Class Camera2D
 	#tag EndMethod
 
 
-	#tag ComputedProperty, Flags = &h0
-		#tag Getter
-			Get
-			  Return mAnchor
-			End Get
-		#tag EndGetter
-		#tag Setter
-			Set
-			  If value <> Nil Then mAnchor = value
-			End Set
-		#tag EndSetter
-		Anchor As Point
-	#tag EndComputedProperty
-
-	#tag Property, Flags = &h21
-		Private mAnchor As Point
-	#tag EndProperty
-
 	#tag Property, Flags = &h21, Description = 486F6C647320616E79206F626A65637473207468617420617265206F6273657276696E6720746869732063616D6572612E205374727563747572653A207B6F6273657276696E67206F626A656374203A20756E757365647D2E
 		Private mObservers As Dictionary
 	#tag EndProperty
@@ -243,26 +222,17 @@ Protected Class Camera2D
 			  ///
 			  ' Returns this camera's viewport as a Rect.
 			  '
-			  ' - Returns: A reference to this camera's viewport Rect.'
+			  ' - Returns: A reference to this camera's viewport Rect.
 			  '
-			  ' - Note: Altering the returned property will affect this camera's viewport.
+			  ' - Notes:
+			  ' Altering the returned property will affect this camera's viewport but
+			  ' will **not** raise any notifications.
 			  ///
 			  
 			  Return mViewport
+			  
 			End Get
 		#tag EndGetter
-		#tag Setter
-			Set
-			  ///
-			  ' Sets this camera's viewport to the passed Rect object.
-			  '
-			  ' - Note: The passed value is a reference. It is **not** copied.
-			  ///
-			  
-			  mViewport = value
-			  
-			End Set
-		#tag EndSetter
 		Viewport As Rect
 	#tag EndComputedProperty
 

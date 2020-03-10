@@ -1,7 +1,7 @@
 #tag Class
 Protected Class SquareTileMap
 Inherits XGE.TileMaps.TileMapBase
-Implements TileMap, XGE.Observer
+Implements TileMap,XGE.Observer
 	#tag Method, Flags = &h21, Description = 52657475726E7320746865206461746120726571756972656420746F2072656E6465722074686973206D617020746F207468652063616D65726127732076696577706F72742E
 		Private Sub ComputeRenderData()
 		  ///
@@ -35,9 +35,9 @@ Implements TileMap, XGE.Observer
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub Constructor(rows As Integer, columns As Integer, tileWidth As Integer, tileHeight As Integer)
+		Sub Constructor(rows As Integer, columns As Integer, tileWidth As Integer, tileHeight As Integer, anchorX As Double, anchorY As Double)
 		  // Calling the overridden superclass constructor.
-		  Super.Constructor(rows, columns, tileWidth, tileHeight)
+		  Super.Constructor(rows, columns, tileWidth, tileHeight, anchorX, anchorY)
 		  
 		  mTiles.ResizeTo(rows - 1, columns - 1)
 		  
@@ -99,8 +99,11 @@ Implements TileMap, XGE.Observer
 		  // Bail early if possible.
 		  If Not needsRedrawing Then Return
 		  
+		  // Check we actually have a buffer to draw.
+		  If mBuffer = Nil Then UpdateBuffer
+		  
 		  // Draw the buffer to the Graphics object at the correct location.
-		  g.DrawPicture(mBuffer, Self.Camera.Anchor.X, Self.Camera.Anchor.Y)
+		  g.DrawPicture(mBuffer, Anchor.X, Anchor.Y)
 		  
 		  
 		End Sub

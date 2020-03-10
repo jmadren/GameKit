@@ -7,7 +7,7 @@ Protected Interface Subject
 	#tag EndMethod
 
 	#tag Method, Flags = &h0
-		Sub Notify(obj As Variant, e As XGE.Events)
+		Sub Notify(data As Variant, e As XGE.Events)
 		  
 		End Sub
 	#tag EndMethod
